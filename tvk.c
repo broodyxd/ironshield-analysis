@@ -1,9 +1,14 @@
 #include "tvk.h"
 #include <bcrypt.h>
+#include <ntstatus.h>
 #include <stddef.h>
 #include <string.h>
 #include <wchar.h>
 #include <winioctl.h>
+
+#ifndef NT_SUCCESS
+#define NT_SUCCESS(Status) (((NTSTATUS)(Status)) >= 0)
+#endif
 
 _Static_assert(sizeof(((tvk_arguments *)0)->path_rule) == 0x408, "path ABI");
 _Static_assert(sizeof(((tvk_arguments *)0)->read_memory) == 0x30, "read ABI");
